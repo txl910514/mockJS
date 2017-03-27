@@ -7,7 +7,23 @@ var fs = require('fs');
 var mock = require("mockjs");
 var app = require('express')();
 var port = process.argv.slice(2)[0] || 8080;
-var server = app.listen(port, function() {
+var getIP = function() {
+  var os = require('os');
+  var IPv4 = '127.0.0.1';
+  var interfaces = os.networkInterfaces();
+  for (var key in interfaces) {
+    interfaces[key].some(function(details){
+      if (details.family == 'IPv4' && key == 'ens33') {
+        IPv4 = details.address;
+        return true;
+      }
+    });
+  }
+  return IPv4;
+};
+var HOST =  getIP();
+var uri = 'http://' + HOST + ':' + port;
+var server = app.listen(port, HOST, function() {
   console.info('Mock server is listening at' + port);
 });
 
