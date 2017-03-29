@@ -44,7 +44,7 @@ fs.watchFile(apiPath, function(curr) {
 getApis();
 
 //支持callback
-app.set('jsonp callback name', 'callback');
+/*app.set('jsonp callback name', 'callback');*/
 app.use(function(req, res) {
   var data = undefined;
   var delay = 0;
@@ -61,5 +61,5 @@ app.use(function(req, res) {
       break;
     }
   }
-  data !== undefined ? setTimeout(() => res.jsonp(data), delay) : res.sendStatus(404);
+  data !== undefined ? setTimeout(() => res.json(data), delay) : res.sendStatus(404);
 });
