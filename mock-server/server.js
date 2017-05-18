@@ -13,7 +13,7 @@ var getIP = function() {
   var interfaces = os.networkInterfaces();
   for (var key in interfaces) {
     interfaces[key].some(function(details){
-      if (details.family == 'IPv4' && key == 'ens33') {
+      if (details.family == 'IPv4' && key == 'en0') {
         IPv4 = details.address;
         return true;
       }
@@ -24,7 +24,7 @@ var getIP = function() {
 var HOST =  getIP();
 var uri = 'http://' + HOST + ':' + port;
 var server = app.listen(port, HOST, function() {
-  console.info('Mock server is listening at' + port);
+  console.info(uri);
 });
 
 const prefix = '/api';
