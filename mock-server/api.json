@@ -194,6 +194,55 @@
       }
     },
     {
+      "url":"/hospital_list",
+      "desc": "大屏医院列表",
+      "mock":true,
+      "res": {
+        "success":true,
+        "message": "大屏医院列表",
+        "data|3": [{
+          "id":"@integer(20,100)",
+          "nameChinese":"四川省人民医院",
+          "nameEnglish":"@word(7,9)"
+        }]
+      }
+    },
+    {
+      "url":"/template_list",
+      "desc": "大屏模版列表",
+      "mock":true,
+      "res": {
+        "success":true,
+        "message": "大屏模版列表",
+        "data|3": [{
+          "id":"@integer(1,2)",
+          "nameChinese":"@word(3,7)",
+          "nameEnglish":"@word(7,9)"
+        }]
+      }
+    },
+    {
+      "url":"/contrast",
+      "desc": "对照表",
+      "mock":true,
+      "res": {
+        "success":true,
+        "message": "大屏对照表",
+        "data": {
+          "areaAModule": "DEVICE_PANDECT_C",
+          "areaBModule": "DEVICE_SERVICE_A",
+          "areaDModule": "EQUIPMENT_UPDATE_INFO",
+          "areaEModule": "EQUIPMENT_TIMEOUT_INFO",
+          "areaCModule": "VALUE_DEVICE_A",
+          "areaHModule": "MONTH_CHECK_COUNT",
+          "areaIModule": "MONTH_REPAIR_COUNT",
+          "areaFModule": "TECHNICAL_DEVICE_A",
+          "areaGModule": "LIFE_DEVICE_B",
+          "areaJModule": "TECHNICAL_REPAIR_A"
+        }
+      }
+    },
+    {
       "url": "/",
       "desc": "Index",
       "mock":true,

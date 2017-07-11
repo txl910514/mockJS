@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "mock-server-slyx",
   "scripts": {
-    "mock": "node ./mock-server/server.js 2618"
+    "mock": "node ./mock-server/server.js 55555"
   },
   "license": "MIT",
   "devDependencies": {

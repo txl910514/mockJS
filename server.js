@@ -7,27 +7,11 @@ var fs = require('fs');
 var mock = require("mockjs");
 var app = require('express')();
 var port = process.argv.slice(2)[0] || 8080;
-var getIP = function() {
-  var os = require('os');
-  var IPv4 = '127.0.0.1';
-  var interfaces = os.networkInterfaces();
-  for (var key in interfaces) {
-    interfaces[key].some(function(details){
-      if (details.family == 'IPv4' && key == 'en33') {
-        IPv4 = details.address;
-        return true;
-      }
-    });
-  }
-  return IPv4;
-};
-var HOST =  getIP();
-var uri = 'http://' + HOST + ':' + port;
-var server = app.listen(port, HOST, function() {
-  console.info(uri);
+var server = app.listen(port, function() {
+  console.info('Mock server is listening at' + port);
 });
 
-const prefix = '/mock';
+const prefix = '/api';
 
 var api = {};
 var apiPath = path.join(__dirname, './api.json');
@@ -44,9 +28,8 @@ fs.watchFile(apiPath, function(curr) {
 getApis();
 
 //支持callback
-/*app.set('jsonp callback name', 'callback');*/
+app.set('jsonp callback name', 'callback');
 app.use(function(req, res) {
-  console.log(req.query)
   var data = undefined;
   var delay = 0;
   for(var group in api) {
@@ -62,5 +45,5 @@ app.use(function(req, res) {
       break;
     }
   }
-  data !== undefined ? setTimeout(() => res.json(data), delay) : res.sendStatus(404);
+  data !== undefined ? setTimeout(() => res.jsonp(data), delay) : res.sendStatus(404);
 });
